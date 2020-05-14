@@ -14,4 +14,17 @@ type (
 		Password string `json:"password" gorm:"type:varchar(255);"`
 		Image    string `json:"image" gorm:"type:varchar(255);"`
 	}
+
+	Locations struct {
+		ID        int    `json:"id" gorm:"PRIMARY_KEY;AUTO_INCREMENT"`
+		Name      string `json:"name" gorm:"type:varchar(255);"`
+		Longitude string `json:"longitude" gorm:"type:varchar(255);"`
+		Latitude  string `json:"latitude" gorm:"type:varchar(255);"`
+	}
+
+	LocationImages struct {
+		ID          int    `json:"id" gorm:"PRIMARY_KEY;AUTO_INCREMENT"`
+		Images      string `json:"images" gorm:"type:varchar(255);"`
+		LocationsID int    `json:"location_id" gorm:"type:integer;"`
+	}
 )

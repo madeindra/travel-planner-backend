@@ -19,7 +19,7 @@ func InitDB(dotenvPath ...string) {
 		log.Panic(err.Error())
 	}
 
-	conn.AutoMigrate(&Users{})
+	conn.AutoMigrate(&Users{}, &Locations{}, &LocationImages{})
 
 	DB = conn
 }

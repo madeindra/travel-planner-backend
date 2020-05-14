@@ -43,6 +43,31 @@ type (
 		Image    string `json:"image"`
 	}
 
+	LocationData struct {
+		ID             int                 `json:"id"`
+		Name           string              `json:"name"`
+		Longitude      string              `json:"longitude"`
+		Latitude       string              `json:"latitude"`
+		LocationImages []LocationImageData `json:"images"`
+	}
+
+	LocationImageData struct {
+		ID     int    `json:"id"`
+		Images string `json:"images"`
+	}
+
+	LocationResponse struct {
+		Status  bool         `json:"status"`
+		Message string       `json:"message"`
+		Data    LocationData `json:"data"`
+	}
+
+	LocationsResponse struct {
+		Status  bool           `json:"status"`
+		Message string         `json:"message"`
+		Data    []LocationData `json:"data"`
+	}
+
 	UserResponse struct {
 		Status  bool     `json:"status"`
 		Message string   `json:"message"`
