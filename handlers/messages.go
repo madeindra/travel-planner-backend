@@ -3,6 +3,7 @@ package handlers
 import "github.com/madecanggih/travel-planner-backend/resources"
 
 const GeneralSuccessMessage string = "Operation successful"
+const BadRequestErrorMessage string = "Bad Request"
 const InternalServerErrorMessage string = "Internal server error"
 const RegistrationSuccessMessage string = "Registration successful"
 const LoginSuccessMessage string = "Login successful"

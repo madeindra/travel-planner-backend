@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/labstack/echo/v4"
@@ -64,18 +65,17 @@ func (h *AuthHandler) PostLogin(c echo.Context) error {
 
 func (h *AuthHandler) PostRegister(c echo.Context) error {
 	var register models.Users
-	var hashedPassword string
+
 	if err := c.Bind(&register); err != nil {
 		res := setErrorResponse(InternalServerErrorMessage)
 		return c.JSON(http.StatusInternalServerError, res)
 	}
 
-	hashedPassword = h.help.HashAndSalt(register.Password)
-	if hashedPassword == "" {
-		res := setErrorResponse(InternalServerErrorMessage)
-		return c.JSON(http.StatusInternalServerError, res)
+	if strings.TrimSpace(register.Password) == "" {
+		res := setErrorResponse(BadRequestErrorMessage)
+		return c.JSON(http.StatusBadRequest, res)
 	}
-	register.Password = hashedPassword
+	register.Password = h.help.HashAndSalt(register.Password)
 
 	check := h.do.NewUser(register)
 
