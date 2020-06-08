@@ -9,7 +9,6 @@ type (
 		Create(data Locations) Locations
 		Update(id int, data Locations) Locations
 		Delete(data Locations) Locations
-		Exist(data Locations) Locations
 	}
 
 	LocationsImplementation struct {
@@ -47,10 +46,4 @@ func (impl *LocationsImplementation) Update(id int, data Locations) Locations {
 func (impl *LocationsImplementation) Delete(data Locations) Locations {
 	impl.db.Delete(&data)
 	return data
-}
-
-func (impl *LocationsImplementation) Exist(data Locations) Locations {
-	locations := Locations{ID: data.ID}
-	impl.db.Where(locations).First(&locations)
-	return locations
 }

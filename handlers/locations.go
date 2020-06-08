@@ -133,15 +133,13 @@ func (h *LocationHandler) DeleteLocation(context echo.Context) error {
 		return context.JSON(http.StatusNotFound, res)
 	}
 
-	location := models.Locations{ID: LocationId}
-
-	check := h.do.Exist(location)
+	check := h.do.SelectByID(LocationId)
 	if check.ID == 0 {
 		res := setErrorResponse(NotFoundMessage)
 		return context.JSON(http.StatusNotFound, res)
 	}
 
-	data := h.do.Delete(location)
+	data := h.do.Delete(check)
 	result := resources.LocationData{ID: data.ID, Name: data.Name, Longitude: data.Longitude, Latitude: data.Latitude}
 	res := resources.LocationResponse{Status: true, Message: GeneralSuccessMessage, Data: result}
 	return context.JSON(http.StatusOK, res)
