@@ -16,10 +16,11 @@ type (
 	}
 
 	Locations struct {
-		ID        int    `json:"id" gorm:"PRIMARY_KEY;AUTO_INCREMENT"`
-		Name      string `json:"name" gorm:"type:varchar(255);"`
-		Longitude string `json:"longitude" gorm:"type:varchar(255);"`
-		Latitude  string `json:"latitude" gorm:"type:varchar(255);"`
+		ID          int    `json:"id" gorm:"PRIMARY_KEY;AUTO_INCREMENT"`
+		Name        string `json:"name" gorm:"type:varchar(255);"`
+		Description string `json:"description" gorm:"type:varchar(255);"`
+		Longitude   string `json:"longitude" gorm:"type:varchar(255);"`
+		Latitude    string `json:"latitude" gorm:"type:varchar(255);"`
 	}
 
 	LocationImages struct {

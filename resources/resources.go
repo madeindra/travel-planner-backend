@@ -46,6 +46,7 @@ type (
 	LocationData struct {
 		ID             int                 `json:"id"`
 		Name           string              `json:"name"`
+		Description    string              `json:"description"`
 		Longitude      string              `json:"longitude"`
 		Latitude       string              `json:"latitude"`
 		LocationImages []LocationImageData `json:"images"`

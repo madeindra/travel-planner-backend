@@ -31,7 +31,7 @@ func (h *LocationHandler) GetAllLocations(c echo.Context) error {
 	data := []resources.LocationData{}
 
 	for i := range locations {
-		data = append(data, resources.LocationData{ID: locations[i].ID, Name: locations[i].Name, Longitude: locations[i].Longitude, Latitude: locations[i].Latitude})
+		data = append(data, resources.LocationData{ID: locations[i].ID, Name: locations[i].Name, Description: locations[i].Description, Longitude: locations[i].Longitude, Latitude: locations[i].Latitude})
 	}
 	res := resources.LocationsResponse{Status: true, Message: GeneralSuccessMessage, Data: data}
 
@@ -60,7 +60,7 @@ func (h *LocationHandler) GetOneLocation(c echo.Context) error {
 		return c.JSON(http.StatusNotFound, res)
 	}
 
-	data := resources.LocationData{ID: location.ID, Name: location.Name, Longitude: location.Longitude, Latitude: location.Latitude}
+	data := resources.LocationData{ID: location.ID, Name: location.Name, Description: location.Description, Longitude: location.Longitude, Latitude: location.Latitude}
 	res := resources.LocationResponse{Status: true, Message: GeneralSuccessMessage, Data: data}
 	return c.JSON(http.StatusOK, res)
 }
@@ -81,7 +81,7 @@ func (h *LocationHandler) PostLocation(context echo.Context) error {
 
 	data := h.do.Create(location)
 
-	result := resources.LocationData{ID: data.ID, Name: data.Name, Longitude: data.Longitude, Latitude: data.Latitude}
+	result := resources.LocationData{ID: data.ID, Name: data.Name, Description: data.Description, Longitude: data.Longitude, Latitude: data.Latitude}
 	res := resources.LocationResponse{Status: true, Message: GeneralSuccessMessage, Data: result}
 	return context.JSON(http.StatusCreated, res)
 }
@@ -113,7 +113,7 @@ func (h *LocationHandler) PutLocation(context echo.Context) error {
 		return context.JSON(http.StatusNotFound, res)
 	}
 
-	result := resources.LocationData{ID: data.ID, Name: data.Name, Longitude: data.Longitude, Latitude: data.Latitude}
+	result := resources.LocationData{ID: data.ID, Name: data.Name, Description: data.Description, Longitude: data.Longitude, Latitude: data.Latitude}
 	res := resources.LocationResponse{Status: true, Message: GeneralSuccessMessage, Data: result}
 	return context.JSON(http.StatusOK, res)
 }
@@ -140,7 +140,7 @@ func (h *LocationHandler) DeleteLocation(context echo.Context) error {
 	}
 
 	data := h.do.Delete(check)
-	result := resources.LocationData{ID: data.ID, Name: data.Name, Longitude: data.Longitude, Latitude: data.Latitude}
+	result := resources.LocationData{ID: data.ID, Name: data.Name, Description: data.Description, Longitude: data.Longitude, Latitude: data.Latitude}
 	res := resources.LocationResponse{Status: true, Message: GeneralSuccessMessage, Data: result}
 	return context.JSON(http.StatusOK, res)
 }
