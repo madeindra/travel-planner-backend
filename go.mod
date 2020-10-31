@@ -1,5 +1,7 @@
 module github.com/madecanggih/travel-planner-backend
 
+go 1.15
+
 require (
 	github.com/denisenkom/go-mssqldb v0.0.0-20200428022330-06a60b6afbbc // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
